@@ -1,5 +1,6 @@
 package com.biblioteca.api.repository;
 
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -14,5 +15,9 @@ public interface AutorRepository extends JpaRepository<Autor, Long>{
 	
 	@Query(value = "select * from autor as a where a.id = :id", nativeQuery = true)
 	Map<String, Object> informacoesAutor(@Param("id") Long id);
+	
+	@Query(value = "select * from autor as a where a.nome like %:nome%", nativeQuery = true)
+	List<Map<String,Object>> findAllNome(@Param("nome") String nome);
+	
 	
 }

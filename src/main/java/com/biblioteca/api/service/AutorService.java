@@ -25,6 +25,10 @@ public class AutorService {
 		return autorRepository.informacoesAutor(id);
 	}
 	
+	public List<Map<String, Object>> findByPorNome(String nome) {
+		return autorRepository.findAllNome(nome);
+	}
+	
 	public Optional<Autor> findByAutorOptional(Long id) {
 
 		Assert.notNull(id, "Testando");

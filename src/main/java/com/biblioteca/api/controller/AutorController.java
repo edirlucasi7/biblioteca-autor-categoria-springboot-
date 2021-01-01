@@ -33,8 +33,13 @@ public class AutorController {
 	}
 	
 	@GetMapping("/{id}")
-	public ResponseEntity<Map<String, Object>> listUsuarioMap(@PathVariable("id") Long id) {
+	public ResponseEntity<Map<String, Object>> listAutorMap(@PathVariable("id") Long id) {
 		return new ResponseEntity<>(autorService.findByIdAutor(id), HttpStatus.OK);
+	}
+	
+	@GetMapping("/nome/{nome}")
+	public ResponseEntity<List<Map<String, Object>>> listAutorPorNomeMap(@PathVariable("nome") String nome) {
+		return new ResponseEntity<>(autorService.findByPorNome(nome), HttpStatus.OK);
 	}
 	
 	@GetMapping("/listar")
