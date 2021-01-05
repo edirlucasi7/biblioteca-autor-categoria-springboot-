@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.biblioteca.api.model.Categoria;
 import com.biblioteca.api.service.CategoriaService;
 
+//@CrossOrigin(origins="*")
 @RestController
 @RequestMapping("/categoria")
 public class CategoriaController {
