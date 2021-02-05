@@ -5,6 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.util.List;
+
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -17,7 +19,7 @@ import com.biblioteca.api.repository.CategoriaRepository;
 import com.biblioteca.api.service.LivroService;
 
 @SpringBootTest
-class ApiApplicationTests {
+class ApiApplicationTestsLivro {
 
 	@Autowired
 	LivroService livroService;
@@ -28,13 +30,12 @@ class ApiApplicationTests {
 	@Autowired
 	CategoriaRepository categoriaRepository;
 	
-	@Test
+	@Test	
 	void test1() {
-		
 		Livro livro = new Livro();
-		Long idLong = (long) 3;
-		Long idCategoria = (long) 3;
-		
+		Long idLong = (long) 1;
+		Long idCategoria = (long) 1;
+
 		Autor autor = autorRepository.findById(idLong).get();
 		Categoria categoria = categoriaRepository.findById(idCategoria).get();
 		
@@ -42,7 +43,7 @@ class ApiApplicationTests {
 		livro.setQuantidade_paginas(230);
 		livro.setAutor_id(autor);
 		livro.setCategoria_id(categoria);
-		
+
 		Livro livroCriado = livroService.createLivro(livro);
 		
 		assertNotNull(livroCriado);
@@ -65,7 +66,22 @@ class ApiApplicationTests {
 	
 	@Test
 	void test2() {
-		
+		List<Livro> livros = livroService.allLivro();
+		assertEquals(10, livros.size());	
+	}
+	
+	@Test
+	void test3() {
+		Long idLivro = (long) 7;
+		Livro livro = livroService.listLivro(idLivro);
+		assertEquals("diferenciado", livro.getNome());
+	}
+	
+	@Test
+	void test4() {
+		Long idLivro = (long) 7;
+		Livro livro = livroService.listLivro(idLivro);
+		assertEquals("diferenciado", livro.getNome());
 	}
 
 }
